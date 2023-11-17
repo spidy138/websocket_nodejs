@@ -9,7 +9,7 @@
   "test": {
     "username": "admin",
     "password": "admin123",
-    "database": "database_test",
+    "database": "postgresdb",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

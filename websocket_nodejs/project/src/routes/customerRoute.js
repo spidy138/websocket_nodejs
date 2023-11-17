@@ -13,6 +13,6 @@ customerRoute.get('/dummy',)
  */
 customerRoute.post("/customermanagement/api/v1/Customer",customerController.addCustomer);
 
-customerRoute.get("/customermanagement/api/v1/getCustomer",customerController.getAllCustomer);
+customerRoute.get("/",customerController.getAllCustomer);
 
 module.exports=customerRoute;

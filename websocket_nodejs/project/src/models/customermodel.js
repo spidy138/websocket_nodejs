@@ -1,12 +1,28 @@
-module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('Customer', {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-    });
-  };
+const config=require('../config/configuration');
+const {Sequelize, DataTypes} =require('sequelize');
+const sequelize=new Sequelize(config.database,config.username,config.password,{
+  host: config.host,
+  dialect: config.dialect
+});
+
+const Customer= sequelize.define('Customer',{
+
+  firstName:{
+    type:DataTypes.STRING,
+    allowNull:false
+  },
+  lastName:{
+    type:DataTypes.STRING,
+    allowNull:false
+  }
+});
+
+sequelize.sync().then(()=>{
+  console.log('database is in sync');
+})
+.catch((error)=>{
+  console.error("error in synchronization");
+});
+module.exports={
+  Customer
+}

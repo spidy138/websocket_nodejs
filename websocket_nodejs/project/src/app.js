@@ -3,8 +3,11 @@ const bodyParser=require("body-parser");
 const swaggerJsdoc=require('swagger-jsdoc');
 const swaggerUI=require('swagger-ui-express');
 const customerRoute=require('./routes/customerRoute.js');
-var port=3000;
+const config=require('./config/configuration.js');
 
+
+var port=3000;
+var socketPort=4000;
 var app=express();
 app.use(bodyParser.json());
 // const swaggerdefinition=require('../src/config/swaggerDef');
@@ -37,9 +40,9 @@ const options={
 const swaggerSpec=swaggerJsdoc(options);
 app.use('/swagger',swaggerUI.serve,swaggerUI.setup(swaggerSpec));
 app.get('/about',(req,res)=>{
-res.send("hello about page here");
+res.send("<h1>Hey, it works!</h1>");
 });
-app.use('/customermanagement',customerRoute);
+app.use('/',customerRoute);
 app.listen(port,()=>{
   console.log("server started listening on "+port)
 });
